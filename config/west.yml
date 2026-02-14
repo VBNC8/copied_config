@@ -1,11 +1,11 @@
 manifest:
   remotes:
-    - name: petejohanson
-      url-base: https://github.com/petejohanson
+    - name: zmk-pointing
+      url-base: https://github.com/zmk-pointing
   projects:
     - name: zmk
-      remote: petejohanson
-      revision: feat/pointing
+      remote: zmk-pointing
+      revision: main
       import: app/west.yml
   self:
     path: config
