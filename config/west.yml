@@ -2,10 +2,15 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
+    - name: petejohanson
+      url-base: https://github.com/petejohanson
   projects:
     - name: zmk
       remote: zmkfirmware
-      revision: 3954602f23237191147071f6a1d8249814470d01 # Stand vom 31. Jan 2025 (Stabil)
+      revision: v0.3-branch
       import: app/west.yml
+    - name: zmk-pointing
+      remote: petejohanson
+      revision: main
   self:
     path: config
