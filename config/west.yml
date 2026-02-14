@@ -1,17 +1,11 @@
 manifest:
   remotes:
-    - name: zmkfirmware
-      url-base: https://github.com/zmkfirmware
     - name: petejohanson
       url-base: https://github.com/petejohanson
   projects:
     - name: zmk
-      remote: zmkfirmware
-      revision: main
-      import: app/west.yml
-    - name: pointing # Namen geändert
       remote: petejohanson
-      revision: main
-      repo-path: zmk-pointing # Aber der Pfad auf GitHub bleibt gleich
+      revision: feat/pointing
+      import: app/west.yml
   self:
     path: config
