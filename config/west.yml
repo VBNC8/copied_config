@@ -1,11 +1,11 @@
 manifest:
   remotes:
-    - name: caksoylar
-      url-base: https://github.com/caksoylar
+    - name: zmk-pointing
+      url-base: https://github.com/zmk-pointing
   projects:
     - name: zmk
-      remote: caksoylar
-      revision: mouse-pointing
+      remote: zmk-pointing
+      revision: main
       import: app/west.yml
   self:
     path: config
