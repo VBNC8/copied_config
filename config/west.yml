@@ -9,8 +9,9 @@ manifest:
       remote: zmkfirmware
       revision: main
       import: app/west.yml
-    - name: zmk-pointing
+    - name: pointing # Namen geändert
       remote: petejohanson
       revision: main
+      repo-path: zmk-pointing # Aber der Pfad auf GitHub bleibt gleich
   self:
     path: config
