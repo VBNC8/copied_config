@@ -1,7 +1,7 @@
 include:
   - board: nice_nano_v2
     shield: splitkb_aurora_corne_left
-    extra-modules: [modules/zmk-pointing]
+    extra-modules: [zmk-pointing]
   - board: nice_nano_v2
     shield: splitkb_aurora_corne_right
-    extra-modules: [modules/zmk-pointing]
+    extra-modules: [zmk-pointing]
