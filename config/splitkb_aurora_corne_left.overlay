@@ -1,12 +1,10 @@
 / {
-    /* Den Trackpoint als Eingabegerät definieren */
     trackpoint: virtual_input {
         compatible = "zmk,input-ps2";
         data-gpios = <&gpio0 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         clock-gpios = <&gpio0 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
     };
 
-    /* Die Bewegungen an das ZMK-Maus-System weitergeben */
     input_relay_config {
         compatible = "zmk,input-relay";
         device = <&trackpoint>;
