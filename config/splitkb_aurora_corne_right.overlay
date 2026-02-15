@@ -1,7 +1,16 @@
 / {
+    /* Diese Sektion sorgt dafür, dass ZMK den VCC-Pin (P0.13) steuern kann */
+    vcc_3v3_regulator: vcc_3v3_regulator {
+        compatible = "regulator-fixed";
+        regulator-name = "vcc_3v3_reg";
+        gpios = <&gpio0 13 GPIO_ACTIVE_HIGH>; // Der MOSFET-Pin des nice!nano
+        regulator-always-on;
+        regulator-boot-on;
+    };
+
     trackpoint: trackpoint {
         compatible = "zmk,input-mouse-ps2";
-        /* Ich habe hier Pin 6 und 8 getauscht, falls das das Problem war */
+        /* Pin 6 und 8 sind hier für den Fall der Fälle getauscht */
         data-gpios = <&gpio0 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         clock-gpios = <&gpio0 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
     };
@@ -10,4 +19,9 @@
         compatible = "zmk,input-listener";
         device = <&trackpoint>;
     };
+};
+
+/* Aktiviert die Power-Control-Logik von ZMK */
+&vcc_3v3_regulator {
+    status = "okay";
 };
