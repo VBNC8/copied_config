@@ -1,13 +1,20 @@
 / {
+    /* Wir deaktivieren andere Geräte, die diese Pins nutzen könnten */
+    /delete-node/ &nice_view_spi;
+    /delete-node/ &oled;
+
     trackpoint: trackpoint {
         compatible = "zmk,input-mouse-ps2";
-        /* Wir bleiben bei 17 und 20, probieren aber die Standard-PS2-Initialisierung */
-        data-gpios = <&gpio0 17 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-        clock-gpios = <&gpio0 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        /* Tausch der Pins 17 und 20 zur Sicherheit */
+        data-gpios = <&gpio0 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        clock-gpios = <&gpio0 17 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
     };
 
+    /* Wir lassen den Listener erst mal weg, damit die Tastatur nicht einfriert! */
+    /*
     trackpoint_listener {
         compatible = "zmk,input-listener";
         device = <&trackpoint>;
     };
+    */
 };
