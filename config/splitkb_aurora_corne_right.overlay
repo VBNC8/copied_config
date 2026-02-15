@@ -1,7 +1,7 @@
 / {
     trackpoint: trackpoint {
         compatible = "zmk,input-mouse-ps2";
-        /* Erst mal den Swap probieren: */
+        /* Zurück auf deine ursprüngliche Belegung */
         data-gpios = <&gpio0 17 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         clock-gpios = <&gpio0 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
     };
@@ -10,9 +10,4 @@
         compatible = "zmk,input-listener";
         device = <&trackpoint>;
     };
-};
-
-/* Wir versuchen die Empfindlichkeit über den Treiber-Parameter zu erzwingen */
-&trackpoint {
-    sampling-rate-number = <100>;
 };
