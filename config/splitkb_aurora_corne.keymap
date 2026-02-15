@@ -4,6 +4,7 @@
 #include <dt-bindings/zmk/rgb.h>
 #include <dt-bindings/zmk/ext_power.h>
 #include <dt-bindings/zmk/pointing.h>
+#include <dt-bindings/zmk/mouse.h>
 
 / {
     sensors {
@@ -38,7 +39,7 @@
         raise_layer {
             bindings = <
     &none      &kp RA(Q) &kp F2     &trans    &kp F4    &kp F5         &kp CARET &kp LBKT      &kp RA(MINUS) &kp SEMI  &kp RPAR &none
-    &none      &kp SQT   &kp MINUS  &trans    &trans    &kp G          &kp UP    &kp LEFT      &kp DOWN      &kp RIGHT &kp RBKT &none
+    &none      &kp SQT   &kp MINUS  &mkp RCLK    &mkp LCLK    &kp G          &kp UP    &kp LEFT      &kp DOWN      &kp RIGHT &kp RBKT &none
     &none      &kp RA(SQT) &trans   &trans    &trans    &trans         &kp UNDER &kp PLUS      &trans        &trans    &kp TILDE &none
                                     &kp LGUI  &trans    &trans         &trans    &trans        &trans
             >;
