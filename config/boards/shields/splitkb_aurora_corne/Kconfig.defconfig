@@ -1,19 +1,19 @@
 if SHIELD_SPLITKB_AURORA_CORNE_LEFT || SHIELD_SPLITKB_AURORA_CORNE_RIGHT
 
 config ZMK_INPUT
-    bool
+    bool "ZMK Input"
     default y
 
 config ZMK_INPUT_MOUSE_PS2
-    bool
+    bool "PS2 Mouse Support"
     default y
 
 config ZMK_INPUT_MOUSE_PS2_SENSITIVITY
-    int
+    int "Mouse Sensitivity"
     default 120
 
 config ZMK_INPUT_MOUSE_PS2_REPORT_INTERVAL
-    int
+    int "Mouse Report Interval"
     default 10
 
 endif
