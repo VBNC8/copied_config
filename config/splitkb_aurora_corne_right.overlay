@@ -1,26 +1,21 @@
 / {
-    /* Dieser Block zwingt P0.13 auf High */
-    ext_power_control: ext_power_control {
+    /* Dieser Block aktiviert den MOSFET für VCC/3.3V */
+    vcc_3v3_regulator: vcc_3v3_regulator {
         compatible = "regulator-fixed";
-        regulator-name = "ext-power-regulator";
-        /* P0.13 entspricht gpio0 Pin 13 */
+        regulator-name = "vcc_3v3_reg";
         gpio = <&gpio0 13 GPIO_ACTIVE_HIGH>;
         enable-active-high;
         regulator-always-on;
         regulator-boot-on;
     };
 
-{
-    /* Der 'Knoten' für den Trackpoint */
-    trackpoint: trackpoint_input {
+    trackpoint: trackpoint {
         compatible = "zmk,input-ps2";
-        /* Hier nutzen wir die Pin-Nummern direkt am GPIO Controller 0 */
         data-gpios = <&gpio0 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         clock-gpios = <&gpio0 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
     };
 
-    /* Das sagt ZMK, dass dieser Input-Strom verarbeitet werden soll */
-    zmk_input_listener {
+    trackpoint_listener {
         compatible = "zmk,input-listener";
         device = <&trackpoint>;
     };
