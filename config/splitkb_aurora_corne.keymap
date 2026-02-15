@@ -44,7 +44,35 @@
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
-        
-        // ... restliche Layer bleiben gleich
-    };
+
+        lower_layer {
+            bindings = <
+    &none      &kp GRAVE &kp LS(GRAVE) &trans    &trans    &ext_power EP_ON       &trans    &trans     &trans    &trans    &trans  &none
+    &none      &kp N1    &kp N2        &kp N3    &kp N4    &kp N5       &kp N6    &kp N7     &kp N8    &kp N9    &kp N0  &none
+    &none      &kp NON_US_BSLH &kp LS(NON_US_BSLH) &kp RA(NON_US_BSLH) &trans &trans &trans &kp LBRC &kp LBKT &kp RBKT &kp RBRC &none
+                                       &kp LGUI  &trans    &kp HOME     &kp END   &trans     &trans
+            >;
+            sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;
+        };
+
+        raise_layer {
+            bindings = <
+    &none      &kp RA(Q) &kp F2     &trans    &kp F4    &kp F5         &kp CARET &kp LBKT      &kp RA(MINUS) &kp SEMI  &kp RPAR &none
+    &none      &kp SQT   &kp MINUS  &mkp RCLK    &mkp LCLK    &kp G          &kp UP    &kp LEFT      &kp DOWN      &kp RIGHT &kp RBKT &none
+    &none      &kp RA(SQT) &trans   &trans    &trans    &trans         &kp UNDER &kp PLUS      &trans        &trans    &kp TILDE &none
+                                    &kp LGUI  &trans    &trans         &trans    &trans        &trans
+            >;
+            sensor-bindings = <&inc_dec_kp UP DOWN>;
+        };
+
+        adjust_layer {
+            bindings = <
+    &rgb_ug RGB_TOG  &rgb_ug RGB_EFF  &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &trans        &trans         &trans      &trans      &trans      &trans      &trans   &none
+    &none            &bt BT_SEL 0     &bt BT_SEL 1     &bt BT_SEL 2     &bt BT_SEL 3  &bt BT_CLR     &trans      &trans      &trans      &trans      &trans   &none
+    &none            &ext_power EP_TOG &rgb_ug RGB_SAI &rgb_ug RGB_SAD  &trans        &trans         &trans      &trans      &kp C_PREV  &kp C_NEXT  &trans   &none
+                                                                        &kp F10       &trans         &trans      &trans      &trans
+            >;
+            sensor-bindings = <&inc_dec_kp C_BRI_DN C_BRI_UP>;
+        };
+    };
 };
