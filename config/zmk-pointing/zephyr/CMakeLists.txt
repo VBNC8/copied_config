@@ -1,0 +1,2 @@
+zephyr_library()
+zephyr_library_sources_ifdef(CONFIG_ZMK_INPUT_MOUSE_PS2 zmk_input_mouse_ps2.c)
