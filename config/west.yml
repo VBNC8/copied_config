@@ -1,10 +1,7 @@
 manifest:
-  remotes:
-    - name: zmk-pointing
-      url-base: https://github.com/zmk-pointing
   projects:
     - name: zmk
-      remote: zmk-pointing
+      url: https://github.com/zmk-pointing/zmk
       revision: main
       import: app/west.yml
   self:
