@@ -1,12 +1,9 @@
 / {
-    vcc_3v3_regulator: vcc_3v3_regulator {
-        compatible = "regulator-fixed";
-        regulator-name = "vcc_3v3_reg";
-        /* Hier lag der Fehler: 'gpios' statt 'gpio' */
-        gpios = <&gpio0 13 GPIO_ACTIVE_HIGH>;
-        enable-active-high;
-        regulator-always-on;
-        regulator-boot-on;
+    /* Wir erzwingen P0.13 auf High, ohne den 'Regulator' Umweg */
+    p0_13_en: gpio_hog {
+        compatible = "zmk,gpio-hog";
+        gpios = <13 GPIO_ACTIVE_HIGH>;
+        output-high;
     };
 
     trackpoint: trackpoint {
@@ -18,5 +15,13 @@
     trackpoint_listener {
         compatible = "zmk,input-listener";
         device = <&trackpoint>;
+    };
+};
+
+/* Wir müssen dem GPIO-Controller sagen, dass er den Hog-Knoten verarbeiten soll */
+&gpio0 {
+    status = "okay";
+    p0_13_en {
+        status = "okay";
     };
 };
