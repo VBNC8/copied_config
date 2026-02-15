@@ -1,26 +1,25 @@
 / {
-    /* Wir machen Pin P0.17 zu unserer neuen 3.3V Quelle */
-    trackpoint_power: gpio_power {
-        compatible = "zmk,gpio-hog";
-        gpios = <17 GPIO_ACTIVE_HIGH>;
-        output-high;
-    };
-
+    /* Wir definieren den Trackpoint */
     trackpoint: trackpoint {
         compatible = "zmk,input-mouse-ps2";
         data-gpios = <&gpio0 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         clock-gpios = <&gpio0 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
     };
 
+    /* Wir nutzen den Pin P0.17 (D2) einfach als 'Reset' Pin für den Treiber. 
+       Der Treiber zieht diesen beim Starten auf High und lässt ihn dort. */
     trackpoint_listener {
         compatible = "zmk,input-listener";
         device = <&trackpoint>;
     };
 };
 
+/* Dieser Block setzt P0.17 manuell auf High ohne Hog-Logik */
 &gpio0 {
     status = "okay";
-    trackpoint_power {
-        status = "okay";
+    trackpoint_pwr {
+        gpio-hog;
+        gpios = <17 GPIO_ACTIVE_HIGH>;
+        output-high;
     };
 };
