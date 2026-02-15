@@ -28,7 +28,7 @@
 
         lower_layer {
             bindings = <
-    &none      &kp GRAVE &kp LS(GRAVE) &trans    &trans    &trans       &trans    &trans     &trans    &trans    &trans  &none
+    &none      &kp GRAVE &kp LS(GRAVE) &trans    &trans    &ext_power EP_ON       &trans    &trans     &trans    &trans    &trans  &none
     &none      &kp N1    &kp N2        &kp N3    &kp N4    &kp N5       &kp N6    &kp N7     &kp N8    &kp N9    &kp N0  &none
     &none      &kp NON_US_BSLH &kp LS(NON_US_BSLH) &kp RA(NON_US_BSLH) &trans &trans &trans &kp LBRC &kp LBKT &kp RBKT &kp RBRC &none
                                        &kp LGUI  &trans    &kp HOME     &kp END   &trans     &trans
