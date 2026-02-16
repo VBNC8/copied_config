@@ -13,15 +13,20 @@
 };
 
 / {
-    /* MAKROS */
+    /* TRI-LAYER LOGIK: L1 + L2 = L4 (RGB) */
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+        tri_layer {
+            if-layers = <1 2>;
+            then-layer = <4>;
+        };
+    };
+
     macros {
         durchmesser: durchmesser {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings
-                = <&macro_press &kp LALT>
-                , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N4 &kp KP_N8>
-                , <&macro_release &kp LALT>;
+            bindings = <&macro_press &kp LALT>, <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N4 &kp KP_N8>, <&macro_release &kp LALT>;
         };
 
         smiley: smiley {
@@ -29,14 +34,7 @@
             #binding-cells = <0>;
             wait-ms = <20>;
             tap-ms = <20>;
-            bindings 
-                = <&macro_press &kp LSHFT>
-                , <&macro_tap &kp COMMA>      
-                , <&macro_release &kp LSHFT>
-                , <&macro_tap &kp SLASH>      
-                , <&macro_press &kp LSHFT>
-                , <&macro_tap &kp N9>         
-                , <&macro_release &kp LSHFT>;
+            bindings = <&macro_press &kp LSHFT>, <&macro_tap &kp COMMA>, <&macro_release &kp LSHFT>, <&macro_tap &kp SLASH>, <&macro_press &kp LSHFT>, <&macro_tap &kp N9>, <&macro_release &kp LSHFT>;
         };
 
         jigg_on: jigg_on {
@@ -44,13 +42,7 @@
             #binding-cells = <0>;
             wait-ms = <30>;
             tap-ms = <30>;
-            bindings 
-                = <&macro_press &kp LGUI>
-                , <&macro_tap &kp D>        
-                , <&macro_release &kp LGUI>
-                , <&macro_wait_time 200>
-                , <&macro_press &kp LCTRL>   
-                , <&macro_tap &kp LGUI>;     
+            bindings = <&macro_press &kp LGUI>, <&macro_tap &kp D>, <&macro_release &kp LGUI>, <&macro_wait_time 200>, <&macro_press &kp LCTRL>, <&macro_tap &kp LGUI>;
         };
 
         jigg_off: jigg_off {
@@ -58,10 +50,7 @@
             #binding-cells = <0>;
             wait-ms = <30>;
             tap-ms = <30>;
-            bindings 
-                = <&macro_release &kp LCTRL> 
-                , <&macro_wait_time 100>
-                , <&macro_tap &kp LGUI>;     
+            bindings = <&macro_release &kp LCTRL>, <&macro_wait_time 100>, <&macro_tap &kp LGUI>;
         };
     };
 
@@ -82,21 +71,6 @@
             bindings = <&kp>, <&kp>;
             tap-ms = <10>; 
         };
-    };
-
-    /* TRI-LAYER LOGIK: L1 + L2 = L4 */
-    conditional_layers {
-        compatible = "zmk,conditional-layers";
-        tri_layer {
-            if-layers = <1 2>;
-            then-layer = <4>;
-        };
-    };
-
-    sensors {
-        compatible = "zmk,keymap-sensors";
-        sensors = <&left_encoder>;
-        triggers-per-rotation = <20>; 
     };
 
     keymap {
@@ -129,7 +103,7 @@
     &none      &kp RA(SQT) &trans     &trans     &trans     &trans        &kp UNDER &kp PLUS      &trans        &trans    &kp RA(RBKT)    &none
                                       &smiley    &trans     &trans        &trans    &trans        &trans
             >;
-            sensor-bindings = <&fast_inc_dec UP DOWN>;
+            sensor-bindings = <&inc_dec_kp UP DOWN>;
         };
 
         adjust_layer {
@@ -139,7 +113,7 @@
     &none            &out OUT_USB     &ext_power EP_TOG &trans          &trans           &trans           &trans           &trans      &kp C_PREV  &kp C_NEXT  &trans     &none
                                                        &kp F10          &trans           &trans           &trans           &trans      &trans
             >;
-            sensor-bindings = <&fast_inc_dec C_BRI_DN C_BRI_UP>;
+            sensor-bindings = <&inc_dec_kp C_BRI_DN C_BRI_UP>;
         };
 
         rgb_layer {
@@ -149,7 +123,7 @@
     &none            &trans           &trans           &trans           &trans           &trans           &trans           &trans      &trans      &trans      &trans     &none
                                                        &trans           &trans           &trans           &trans           &trans      &trans
             >;
-            sensor-bindings = <&fast_inc_dec RGB_BRD RGB_BRI>;
+            sensor-bindings = <&inc_dec_kp RGB_BRD RGB_BRI>;
         };
     };
 };
