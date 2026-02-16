@@ -93,5 +93,15 @@
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
+
+        rgb_layer {
+            bindings = <
+    &none            &trans           &trans           &trans           &trans           &trans           &trans           &trans      &trans      &trans      &trans     &none
+    &none            &trans           &trans           &trans           &trans           &trans           &trans           &trans      &trans      &trans      &trans     &none
+    &none            &trans           &trans           &trans           &trans           &trans           &trans           &trans      &trans      &trans      &trans     &none
+                                                       &trans           &trans           &trans           &trans           &trans      &trans
+            >;
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
+        };
     };
 };
