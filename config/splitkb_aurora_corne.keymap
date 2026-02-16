@@ -13,6 +13,7 @@
 };
 
 / {
+    /* MAKROS */
     macros {
         durchmesser: durchmesser {
             compatible = "zmk,behavior-macro";
@@ -38,7 +39,6 @@
                 , <&macro_release &kp LSHFT>;
         };
 
-        // Jiggler AN: Desktop zeigen, CTRL locken, Startmenü auf
         jigg_on: jigg_on {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -46,23 +46,22 @@
             tap-ms = <30>;
             bindings 
                 = <&macro_press &kp LGUI>
-                , <&macro_tap &kp D>        // Desktop anzeigen
+                , <&macro_tap &kp D>        
                 , <&macro_release &kp LGUI>
                 , <&macro_wait_time 200>
-                , <&macro_press &kp LCTRL>   // CTRL locken
-                , <&macro_tap &kp LGUI>;     // Startmenü öffnen
+                , <&macro_press &kp LCTRL>   
+                , <&macro_tap &kp LGUI>;     
         };
 
-        // Jiggler AUS: CTRL lösen, Startmenü zu
         jigg_off: jigg_off {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <30>;
             tap-ms = <30>;
             bindings 
-                = <&macro_release &kp LCTRL> // CTRL lösen
+                = <&macro_release &kp LCTRL> 
                 , <&macro_wait_time 100>
-                , <&macro_tap &kp LGUI>;     // Startmenü wieder schließen
+                , <&macro_tap &kp LGUI>;     
         };
     };
 
@@ -82,6 +81,15 @@
             #sensor-binding-cells = <2>;
             bindings = <&kp>, <&kp>;
             tap-ms = <10>; 
+        };
+    };
+
+    /* TRI-LAYER LOGIK: L1 + L2 = L4 */
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+        tri_layer {
+            if-layers = <1 2>;
+            then-layer = <4>;
         };
     };
 
@@ -106,7 +114,7 @@
 
         lower_layer {
             bindings = <
-    &none      &kp GRAVE       &kp LS(GRAVE)       &trans              &trans        &ext_power EP_ON    &trans      &trans      &trans      &trans      &trans          &none
+    &none      &kp GRAVE       &kp LS(GRAVE)       &trans              &trans        &trans              &trans      &trans      &trans      &trans      &trans          &none
     &none      &kp N1          &kp N2              &kp N3              &kp N4        &kp N5              &kp N6      &kp N7      &kp N8      &kp N9      &kp N0          &none
     &none      &kp NON_US_BSLH &kp LS(NON_US_BSLH) &kp RA(NON_US_BSLH) &trans        &trans              &kp RA(N7)  &kp RA(N8)  &kp RA(N9)  &kp RA(N0)  &kp NON_US_HASH &none
                                                    &kp LGUI            &trans        &kp HOME            &kp END     &trans      &trans
@@ -116,7 +124,7 @@
 
         raise_layer {
             bindings = <
-    &none      &kp RA(Q)   &kp RA(E)   &trans     &kp F4     &kp F5        &kp CARET &kp LBKT      &kp RA(MINUS) &kp SEMI  &kp RPAR        &none
+    &none      &kp RA(Q)   &kp RA(E)   &trans     &trans     &trans        &kp CARET &kp LBKT      &kp RA(MINUS) &kp SEMI  &kp RPAR        &none
     &none      &kp SQT     &kp MINUS  &mkp RCLK  &mkp LCLK  &durchmesser  &kp UP    &kp LEFT      &kp DOWN      &kp RIGHT &kp RBKT        &none
     &none      &kp RA(SQT) &trans     &trans     &trans     &trans        &kp UNDER &kp PLUS      &trans        &trans    &kp RA(RBKT)    &none
                                       &smiley    &trans     &trans        &trans    &trans        &trans
@@ -126,12 +134,22 @@
 
         adjust_layer {
             bindings = <
-    &none            &out OUT_BLE     &trans           &rgb_ug RGB_TOG  &rgb_ug RGB_EFF  &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &trans      &trans      &jigg_off   &jigg_on   &none
+    &none            &out OUT_BLE     &kp F2           &trans           &kp F4           &kp F5           &trans           &trans      &trans      &jigg_off   &jigg_on   &none
     &none            &bt BT_SEL 0     &bt BT_SEL 1     &bt BT_SEL 2     &bt BT_SEL 3     &bt BT_CLR       &trans           &trans      &trans      &trans      &trans     &none
-    &none            &out OUT_USB     &ext_power EP_TOG &rgb_ug RGB_SAI &rgb_ug RGB_SAD  &trans           &trans           &trans      &kp C_PREV  &kp C_NEXT  &trans     &none
+    &none            &out OUT_USB     &ext_power EP_TOG &trans          &trans           &trans           &trans           &trans      &kp C_PREV  &kp C_NEXT  &trans     &none
                                                        &kp F10          &trans           &trans           &trans           &trans      &trans
             >;
             sensor-bindings = <&fast_inc_dec C_BRI_DN C_BRI_UP>;
+        };
+
+        rgb_layer {
+            bindings = <
+    &none            &trans           &trans           &rgb_ug RGB_TOG  &rgb_ug RGB_EFF  &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &trans      &trans      &trans      &trans     &none
+    &none            &trans           &trans           &rgb_ug RGB_SAI  &rgb_ug RGB_SAD  &rgb_ug RGB_HUI  &rgb_ug RGB_HUD  &trans      &trans      &trans      &trans     &none
+    &none            &trans           &trans           &trans           &trans           &trans           &trans           &trans      &trans      &trans      &trans     &none
+                                                       &trans           &trans           &trans           &trans           &trans      &trans
+            >;
+            sensor-bindings = <&fast_inc_dec RGB_BRD RGB_BRI>;
         };
     };
 };
