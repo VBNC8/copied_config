@@ -1,9 +1,9 @@
 / {
-    trackpoint: trackpoint {
-        compatible = "zmk,input-mouse-ps2";
-        data-gpios = <&gpio0 17 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-        clock-gpios = <&gpio0 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-    };
+trackpoint: trackpoint {
+    compatible = "zmk,input-mouse-ps2";
+    data-gpios = <&gpio0 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+    clock-gpios = <&gpio0 17 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+};
 
     trackpoint_listener {
         compatible = "zmk,input-listener";
