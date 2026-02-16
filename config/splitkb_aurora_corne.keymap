@@ -95,95 +95,9 @@
             bindings = <
     &none      &kp GRAVE       &kp LS(GRAVE)       &trans              &trans        &ext_power EP_ON    &trans      &trans      &trans      &trans      &trans          &none
     &none      &kp N1          &kp N2              &kp N3              &kp N4        &kp N5              &kp N6      &kp N7      &kp N8      &kp N9      &kp N0          &none
-    &none      &kp NON_US_BSLH &kp LS(NON_US_BSLH) &kp RA(NON_US_BSLH) &trans        &trans              &kp RA(N7)  &kp RA(N8)  &kp RA(#include <behaviors.dtsi>
-#include <dt-bindings/zmk/keys.h>
-#include <dt-bindings/zmk/bt.h>
-#include <dt-bindings/zmk/rgb.h>
-#include <dt-bindings/zmk/ext_power.h>
-#include <dt-bindings/zmk/pointing.h>
-#include <dt-bindings/zmk/mouse.h>
-
-&lt {
-    tapping-term-ms = <200>;
-    quick-tap-ms = <150>; 
-};
-
-/ {
-    /* MAKROS */
-    macros {
-        durchmesser: durchmesser {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings
-                = <&macro_press &kp LALT>
-                , <&macro_tap &kp KP_N0 &kp KP_N2 &kp KP_N4 &kp KP_N8>
-                , <&macro_release &kp LALT>;
-        };
-        // Smiley ;-) für DE Layout
-        smiley: smiley {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <20>;
-            tap-ms = <20>;
-            bindings 
-                = <&macro_press &kp LSHFT>
-                , <&macro_tap &kp COMMA>      
-                , <&macro_release &kp LSHFT>
-                , <&macro_tap &kp SLASH>      
-                , <&macro_press &kp LSHFT>
-                , <&macro_tap &kp N9>         
-                , <&macro_release &kp LSHFT>;
-        };
-    };
-
-    /* BEHAVIORS */
-    behaviors {
-        hrm: home_row_mods {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            quick-tap-ms = <150>; 
-            flavor = "balanced";
-            require-prior-idle-ms = <125>;
-            bindings = <&kp>, <&kp>;
-        };
-        // Nur für die beschleunigte Drehung (z.B. Pfeiltasten)
-        fast_inc_dec: fast_inc_dec {
-            compatible = "zmk,behavior-sensor-rotate-var";
-            #sensor-binding-cells = <2>;
-            bindings = <&kp>, <&kp>;
-            tap-ms = <10>; // Kürzere Intervalle für schnellere Reaktion
-        };
-    };
-
-    sensors {
-        compatible = "zmk,keymap-sensors";
-        sensors = <&left_encoder>;
-        triggers-per-rotation = <20>; 
-    };
-
-    keymap {
-        compatible = "zmk,keymap";
-
-        default_layer {
-            bindings = <
-    &none      &kp Q  &kp W  &kp E        &kp R         &kp T          &kp Y  &kp U          &kp I        &kp O     &kp P       &none
-    &none      &kp A  &kp S  &hrm LCTRL D &hrm LSHIFT F &kp G          &kp H  &hrm RSHIFT J  &hrm RCTRL K &kp L     &kp SLASH   &none
-    &none      &kp Z  &kp X  &kp C        &kp V         &kp B          &kp N  &kp M          &kp COMMA    &kp DOT   &kp DEL     &none
-                             &kp C_PP     &lt 2 ESC     &lt 1 TAB      &lt 1 RET  &lt 2 SPACE  &lt 3 BSPC
-            >;
-            // LINEAR (Standard ZMK Verhalten)
-            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
-        };
-
-        lower_layer {
-            bindings = <
-    &none      &kp GRAVE       &kp LS(GRAVE)       &trans              &trans        &ext_power EP_ON    &trans      &trans      &trans      &trans      &trans          &none
-    &none      &kp N1          &kp N2              &kp N3              &kp N4        &kp N5              &kp N6      &kp N7      &kp N8      &kp N9      &kp N0          &none
     &none      &kp NON_US_BSLH &kp LS(NON_US_BSLH) &kp RA(NON_US_BSLH) &trans        &trans              &kp RA(N7)  &kp RA(N8)  &kp RA(N9)  &kp RA(N0)  &kp NON_US_HASH &none
                                                    &kp LGUI            &trans        &kp HOME            &kp END     &trans      &trans
             >;
-            // LINEAR (Standard ZMK Verhalten)
             sensor-bindings = <&inc_dec_kp PG_UP PG_DN>;
         };
 
@@ -194,18 +108,16 @@
     &none      &kp RA(SQT) &trans     &trans     &trans     &trans        &kp UNDER &kp PLUS      &trans        &trans    &kp RA(RBKT)    &none
                                       &smiley    &trans     &trans        &trans    &trans        &trans
             >;
-            // BESCHLEUNIGT (Variables Verhalten für Pfeiltasten)
             sensor-bindings = <&fast_inc_dec UP DOWN>;
         };
 
         adjust_layer {
             bindings = <
     &none            &rgb_ug RGB_TOG  &rgb_ug RGB_EFF  &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &trans           &trans      &trans      &trans      &trans      &trans   &none
-    &none            &bt BT_SEL 0     &bt BT_SEL 1     &bt BT_SEL 2     &bt BT_SEL 3     &bt BT_CLR      &trans      &trans      &trans      &trans      &trans   &none
+    &none            &bt BT_SEL 0     &bt BT_SEL 1     &bt BT_SEL 2     &bt BT_SEL 3     &bt BT_CLR      &mobcenter   &trans      &trans      &trans      &trans   &none
     &none            &ext_power EP_TOG &rgb_ug RGB_SAI &rgb_ug RGB_SAD  &trans           &trans          &trans      &trans      &kp C_PREV  &kp C_NEXT  &trans   &none
                                                        &kp F10          &trans           &trans          &trans      &trans      &trans
             >;
-            // BESCHLEUNIGT (Variables Verhalten für Helligkeit)
             sensor-bindings = <&fast_inc_dec C_BRI_DN C_BRI_UP>;
         };
     };
