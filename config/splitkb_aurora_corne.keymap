@@ -7,12 +7,12 @@
 #include <dt-bindings/zmk/outputs.h>
 
 / {
-    /* TRI-LAYER LOGIK: Wenn Lower (1) und Raise (2) aktiv sind, schalte Adjust (3) ein */
+    /* TRI-LAYER LOGIK: Schaltet auf Layer 4 (RGB), wenn L1 und L2 aktiv sind */
     conditional_layers {
         compatible = "zmk,conditional-layers";
         tri_layer {
             if-layers = <1 2>;
-            then-layer = <3>;
+            then-layer = <4>; 
         };
     };
 
@@ -59,7 +59,7 @@
             bindings = <&kp>, <&kp>;
         };
 
-        /* Spezielles Verhalten für Backspace: Ermöglicht Repeat durch schnelles Doppel-Tippen */
+        /* Behavior für Backspace: Repeat bei schnellem Doppel-Tap, Layer 3 bei Halten */
         lt_hp: layer_tap_hold_preferred {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -115,12 +115,11 @@
 
         rgb_layer {
             bindings = <
-    &none            &trans           &trans           &trans           &trans           &trans           &trans           &trans      &trans      &trans      &trans     &none
-    &none            &trans           &trans           &trans           &trans           &trans           &trans           &trans      &trans      &trans      &trans     &none
-    &none            &trans           &trans           &trans           &trans           &trans           &trans           &trans      &trans      &trans      &trans     &none
-                                                       &trans           &trans           &trans           &trans           &trans      &trans
+    &none  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &none
+    &none  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &none
+    &none  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &none
+                           &trans  &trans  &trans    &trans  &trans  &trans
             >;
-            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
     };
 };
