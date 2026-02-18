@@ -49,13 +49,13 @@
     };
 
     behaviors {
-        hrm: home_row_mods {
+       hrm: home_row_mods {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            quick-tap-ms = <150>; 
-            flavor = "balanced";
-            require-prior-idle-ms = <125>;
+            tapping-term-ms = <220>;    // Ein Tick länger als jetzt
+            quick-tap-ms = <150>;       // Erlaubt schnelles Wiederholen von Buchstaben
+            flavor = "tap-preferred";   // WICHTIG: Verhindert Mods beim "Rollen"
+            require-prior-idle-ms = <150>; // Verhindert Mods im schnellen Schreibfluss
             bindings = <&kp>, <&kp>;
         };
 
