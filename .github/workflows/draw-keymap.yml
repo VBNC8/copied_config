@@ -9,6 +9,6 @@ jobs:
   draw:
     uses: caksoylar/keymap-drawer/.github/workflows/draw-zmk.yml@main
     with:
-      keymap_path: "config/splitkb_aurora_corne.keymap" # Stelle sicher, dass der Dateiname stimmt!
+      keymap_file: "config/splitkb_aurora_corne.keymap"  # Geändert von keymap_path zu keymap_file
       output_placeholder: "img/corne.svg"
       draw_args: "corne:'-k corne_rotated'" # Optional für das Corne-Layout
