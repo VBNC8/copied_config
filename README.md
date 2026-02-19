@@ -11,7 +11,7 @@ Mein primäres Split-Keyboard.
 ### Keymap
 Die folgende Grafik wird bei jedem Push automatisch aktualisiert:
 
-![Keymap](./img/corne.svg)
+![Keymap](./img/splitkb-aurora-corne.svg)
 
 ---
 
