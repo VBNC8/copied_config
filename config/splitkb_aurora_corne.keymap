@@ -54,25 +54,28 @@
     };
 
     behaviors {
-        // CTRL & ALT: SCHUTZ VOR FEHLAUSLÖSUNG
+        // Für CTRL, ALT, GUI (Die "gefährlichen" Mods)
         hrm_safe: hrm_safe {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             tapping-term-ms = <280>;
             quick-tap-ms = <175>; 
-            flavor = "tap-preferred";
-            require-prior-idle-ms = <150>;
+            flavor = "balanced"; // "balanced" ist oft stabiler für HRM als tap-preferred
+            require-prior-idle-ms = <150>; 
             bindings = <&kp>, <&kp>;
+            hold-trigger-on-release; // Aktiviert den Mod erst, wenn die ANDERE Taste losgelassen wird
         };
 
-        // SHIFT: SCHNELLIGKEIT
+        // Für SHIFT (Muss oft schneller reagieren)
         hrm_shift: hrm_shift {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             tapping-term-ms = <200>;
             quick-tap-ms = <150>; 
             flavor = "balanced";
+            // Shift braucht meistens kein prior-idle, damit "Shift + Buchstabe" flüssig bleibt
             bindings = <&kp>, <&kp>;
+            hold-trigger-on-release;
         };
 
         // DAUMEN-LOGIK: Verhindert versehentliche Layer-Wechsel
